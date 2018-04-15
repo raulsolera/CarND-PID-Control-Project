@@ -61,5 +61,6 @@ Finally the twiddle algorithm was implemented to fine tune the Ks parameters. Ea
 - Kp = -0.2486 
 - Ki = -0.000303831
 - Kd = -2.44577
+
 Here this results are compared with the previous manually tune parameters:
 ![alt text][image4]
