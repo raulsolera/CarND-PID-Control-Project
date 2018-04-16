@@ -22,7 +22,7 @@ Once the install for uWebSocketIO is complete, the main program can be built and
 3. cd build
 4. cmake ..
 5. make
-6. ./PID [params]
+6. ./pid [params]
 
 For parameters use:
 - Kp
@@ -32,10 +32,12 @@ For parameters use:
 - time from to measure error for twiddle algo
 - time range to measure error for twiddle algo
 
+Example with no parameters:
+- ./pid _(the controller will be initialize with optimal parameters: Kp = -0.2486, Ki = -0.000303831, Kd = -2.44577)_
 Example with twiddle:
-- ./PID 0.125 0.001 1 1 500 1500
+- ./pid 0.125 0.001 1 1 500 1500
 Example without twiddle:
-- ./PID 0.125 0.001 1 0
+- ./pid 0.125 0.001 1 0
 
 
 ## Tunning K params
@@ -57,7 +59,7 @@ It can be seen that the K's parameters do not move in the same magnitude, if we 
 ![alt text][image5]
 
 ## Tunning using twiddle algorithm
-Finally the twiddle algorithm was implemented to fine tune the Ks parameters. Each epoch of the twiddle algorithm is performed over more than a full lap (cotrolled by time) and each time a parameter is tune the simulator is restarted to measure error over the same path. After a long tuning up process a final optimal parameters were found:
+Finally the twiddle algorithm was implemented to fine tune the Ks parameters. Each epoch of the twiddle algorithm is performed over more than a full lap (cotrolled by time) and, each time a parameter is tune, the simulator is restarted to measure error over the same path. After a long tuning up process a final optimal parameters were found:
 - Kp = -0.2486 
 - Ki = -0.000303831
 - Kd = -2.44577

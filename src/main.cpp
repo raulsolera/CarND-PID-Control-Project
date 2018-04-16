@@ -39,21 +39,34 @@ int main(int argc, char *argv[])
   PID pid;
   Twiddle twiddle;
   
-  // Initialize the pid variable.
-  double init_Kp = atof(argv[1]);
-  double init_Ki = atof(argv[2]);
-  double init_Kd = atof(argv[3]);
-  pid.Init(init_Kp, init_Ki, init_Kd);
+  // Default PID parameters
+  double init_Kp = -0.2486;
+  double init_Ki = -0.000303831;
+  double init_Kd = -2.44577;
+  int apply_twiddle = 0;
   
-  int apply_twiddle = atof(argv[4]);
-  if(apply_twiddle!=0){
-    int free_init = atof(argv[5]);
-    int tuning_range = atof(argv[6]);
-    twiddle.Init(init_Kp/10, init_Ki/10, init_Kd/10, apply_twiddle, free_init, tuning_range);
+  // if command line parameters
+  if(argc > 1){
+  
+    // Initialize the pid variable.
+    init_Kp = atof(argv[1]);
+    init_Ki = atof(argv[2]);
+    init_Kd = atof(argv[3]);
+    apply_twiddle = atof(argv[4]);
+    
+    // if apply twiddle --> twiddle params:
+    if(apply_twiddle!=0){
+      int free_init = atof(argv[5]);
+      int tuning_range = atof(argv[6]);
+      twiddle.Init(init_Kp/10, init_Ki/10, init_Kd/10, apply_twiddle, free_init, tuning_range);
+    }
+    // else{
+    //   twiddle.Init(init_Kp/10, init_Ki/10, init_Kd/10, apply_twiddle, 0, 0);
+    // }
+    
   }
-  else{
-    twiddle.Init(init_Kp/10, init_Ki/10, init_Kd/10, apply_twiddle, 0, 0);
-  }
+  
+  pid.Init(init_Kp, init_Ki, init_Kd);
 
   // File to store sim values
   ofstream out_file;
