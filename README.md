@@ -28,7 +28,7 @@ For parameters use:
 - Kp
 - Ki
 - Kd
-- use twiddle algorithm: 0 / 1(or other values) --> yes / no
+- use twiddle algorithm: 0 / 1(or other values) --> no / yes
 - time from to measure error for twiddle algo
 - time range to measure error for twiddle algo
 
@@ -36,10 +36,10 @@ Example with no parameters:
 - ./pid _(the controller will be initialize with optimal parameters: Kp = -0.2486, Ki = -0.000303831, Kd = -2.44577)_
 
 Example with twiddle:
-- ./pid 0.125 0.001 1 1 500 1500
+- ./pid -0.125 -0.001 -1.0 1 500 1500
 
 Example without twiddle:
-- ./pid 0.125 0.001 1 0
+- ./pid -0.125 -0.001 -1.0 0
 
 
 ## Tunning K params
